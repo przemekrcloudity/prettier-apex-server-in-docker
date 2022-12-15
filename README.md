@@ -33,7 +33,7 @@ Make sure that you have these dependencies and scripts in package.json
 After that, add prettier apex server definition to bitbucket-pipelines.yml
 
 ```yaml
-image:  atlassian/default-image:3
+image: atlassian/default-image:3
 definitions:
   services:
     prettier-apex:
@@ -48,7 +48,11 @@ pipelines:
         caches:
           - docker
         script:
-          - npm ci 
+          - npm ci
           - npm run prettier-check
 
 ```
+
+## Github
+
+Just like in bitbucket, this can be implemented using [service containers](https://docs.github.com/en/actions/using-containerized-services/about-service-containers)
