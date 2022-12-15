@@ -1,0 +1,28 @@
+name: Release | Docker
+on:
+  workflow_dispatch:
+    inputs:
+      IMAGE_VERSION:
+        required: true
+        type: string
+        description: Created image tag
+jobs:
+  deploy_to_docker:
+    environment: docker
+    runs-on: ubuntu-22.04
+    name: Deploy to docker
+    steps:
+      - name: "Checkout git"
+        uses: actions/checkout@v2
+      - name: "Build image"
+        env:
+          VERSION: ${{ github.event.inputs.MFC_VERSION }}
+        run: docker build -t ziemniakoss/prettier-apex-server:latest .
+      - name: "Tag version"
+        env:
+          VERSION: ${{ github.event.inputs.IMAGE_VERSION }}
+        run: docker tag ziemniakoss/prettier-apex-server:latest ziemniakoss/prettier-apex-server:$VERSION
+      - name: "Authorize to docker hub"
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ziemniakoss --password-stdin
+      - name: "Push tags to docker"
+        run: docker push -a ziemniakoss/prettier-apex-server
