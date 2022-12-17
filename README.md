@@ -1,5 +1,8 @@
 # Prettier Apex Server in docker image
 
+[![Docker image version tag](https://img.shields.io/docker/v/ziemniakoss/prettier-apex-server?label=image%20version)](https://hub.docker.com/r/ziemniakoss/prettier-apex-server)
+[![badge with image size](https://img.shields.io/docker/image-size/ziemniakoss/prettier-apex-server)](https://hub.docker.com/r/ziemniakoss/prettier-apex-server)
+
 Run apex parsing server in docker to speed up apex formatting with [prettier](https://github.com/dangmai/prettier-plugin-apex).
 
 # How to use
