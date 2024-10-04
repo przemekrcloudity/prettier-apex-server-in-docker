@@ -15,14 +15,12 @@ jobs:
       - name: "Checkout git"
         uses: actions/checkout@v2
       - name: "Build image"
-        env:
-          VERSION: ${{ github.event.inputs.MFC_VERSION }}
-        run: docker build -t ziemniakoss/prettier-apex-server:latest .
+        run: docker build -t przemekcloudity/prettier-apex-server:latest .
       - name: "Tag version"
         env:
           VERSION: ${{ github.event.inputs.IMAGE_VERSION }}
-        run: docker tag ziemniakoss/prettier-apex-server:latest ziemniakoss/prettier-apex-server:$VERSION
+        run: docker tag przemekcloudity/prettier-apex-server:latest przemekcloudity/prettier-apex-server:$VERSION
       - name: "Authorize to docker hub"
-        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ziemniakoss --password-stdin
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username przemekcloudity --password-stdin
       - name: "Push tags to docker"
-        run: docker push -a ziemniakoss/prettier-apex-server
+        run: docker push -a przemekcloudity/prettier-apex-server
